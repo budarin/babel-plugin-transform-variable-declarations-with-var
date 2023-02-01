@@ -22,7 +22,7 @@ yarn add babel-plugin-transform-variable-declarations-with-var --dev
 
 ```js
 return {
-    plugins: [plu'babel-plugin-transform-variable-declarations-with-var'gin],
+    plugins: ['babel-plugin-transform-variable-declarations-with-var'],
 };
 ```
 
