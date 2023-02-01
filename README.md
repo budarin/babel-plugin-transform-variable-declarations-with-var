@@ -21,20 +21,8 @@ yarn add babel-plugin-transform-variable-declarations-with-var --dev
 ### With a configuration file (Recommended)
 
 ```js
-// CommonJs
-const plugin = rquire('babel-plugin-transform-variable-declarations-with-var').default;
-
 return {
-    plugins: [plugin],
-};
-```
-
-```js
-// ESM
-import plugin from 'babel-plugin-transform-variable-declarations-with-var';
-
-return {
-    plugins: [plugin],
+    plugins: [plu'babel-plugin-transform-variable-declarations-with-var'gin],
 };
 ```
 
