@@ -1,6 +1,6 @@
 {
     "name": "babel-plugin-transform-variable-declarations-with-var",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Babel plugin for replacing const and let variable declarations with var kind",
     "main": "./dist/index.js",
     "repository": "https://github.com/budarin/babel-plugin-transform-variable-declarations-with-var.git",
