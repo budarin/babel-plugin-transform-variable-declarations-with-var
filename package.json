@@ -1,6 +1,6 @@
 {
     "name": "babel-plugin-transform-variable-declarations-with-var",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Babel plugin for replacing const and let variable declarations with var kind",
     "main": "./dist/index.js",
     "repository": "https://github.com/budarin/babel-plugin-transform-variable-declarations-with-var.git",
@@ -13,13 +13,11 @@
     "keywords": [
         "babel-plugin"
     ],
-    "dependencies": {
-        "@babel/types": "^7.20.7"
-    },
     "peerDependencies": {
         "@babel/core": "^7.0.0-0"
     },
     "devDependencies": {
+        "@babel/types": "^7.20.7",
         "@babel/cli": "^7.20.7",
         "@babel/core": "^7.20.12",
         "@babel/helper-plugin-utils": "^7.20.2",
@@ -31,8 +29,10 @@
         "typescript": "^4.9.5"
     },
     "scripts": {
-        "build": "yarn tsc",
-        "test": "jest",
-        "prepublishOnly": "yarn build && yarn test"
+        "build": "tsc",
+        "type-check": "tsc --noEmit",
+        "pnpm-install": "pnpm install",
+        "upgrade-dependencies": "pnpm upgrade -i",
+        "publish-package": "pnpm build && pnpm publish --access=public"
     }
 }

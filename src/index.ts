@@ -1,4 +1,3 @@
-import * as t from '@babel/types';
 import { declare } from '@babel/helper-plugin-utils';
 
 const VAR = 'var';
@@ -9,30 +8,20 @@ export default declare((api) => {
     return {
         name: 'transform-variable-declarations-with-var',
         visitor: {
-            VariableDeclaration: {
-                exit(path): void {
-                    let bindings = [] as string[];
-                    let scope = path.scope.parent;
+            VariableDeclaration(path) {
+                if (['let', 'const'].includes(path.node.kind)) {
+                    const scope = path.scope;
+                    const bindings = path.getBindingIdentifiers();
 
-                    while (scope) {
-                        const keys = Object.keys(scope.bindings);
-                        if (keys.length) {
-                            bindings = [...bindings, ...keys];
+                    for (const [name, binding] of Object.entries(bindings)) {
+                        if (scope.hasBinding(name) && !scope.bindingIdentifierEquals(name, binding)) {
+                            const newName = scope.generateUidIdentifier(name).name;
+                            scope.rename(name, newName);
                         }
-                        scope = scope.parent;
                     }
 
-                    path.node.declarations.forEach((vd) => {
-                        const name = (vd.id as t.Identifier).name;
-                        if (bindings.includes(name)) {
-                            path.scope.rename(name);
-                        }
-                    });
-
-                    if (path.node.kind !== VAR) {
-                        path.node.kind = VAR;
-                    }
-                },
+                    path.node.kind = 'var';
+                }
             },
         },
     };
