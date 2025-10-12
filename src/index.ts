@@ -1,7 +1,5 @@
 import { declare } from '@babel/helper-plugin-utils';
 
-const VAR = 'var';
-
 export default declare((api) => {
     api.assertVersion(7);
 
